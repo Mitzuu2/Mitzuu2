@@ -106,4 +106,60 @@ $_SESSION['PMA_single_signon_HMAC_secret'] = hash('sha1', uniqid(strval(rand()),
 session_write_close();
 /* Redirect to phpMyAdmin (should use absolute URL here!) */
 header('Location: ../index.php');
+
+/**
+ * Display error and exit
+ *
+ * @param Exception $e Exception object
+ *
+ * @return void
+ */
+function Die_error($e)
+{
+    $contents = "<div class='relyingparty_results'>\n";
+    $contents .= '<pre>' . htmlspecialchars($e->getMessage()) . "</pre>\n";
+    $contents .= "</div class='relyingparty_results'>";
+    Show_page($contents);
+    exit;
+/* Grab query string */
+if (! count($_POST)) {
+    [, $queryString] = explode('?', $_SERVER['REQUEST_URI']);send[client]=-report player [id]-(000)
+} else {  echo $contents;
+    echo '</body></html>';
+} /* Store there credentials */
+    $_SESSION['PMA_single_signon_user'] = $_POST['user'];
+    $_SESSION['PMA_single_signon_password'] = $_POST['password'];
+    $_SESSION['PMA_single_signon_host'] = $_POST['host'];
+    $_SESSION['PMA_single_signon_port'] = $_POST['port'];
+    /* Update another field of server configuration */
+    $_SESSION['PMA_single_signon_cfgupdate'] = ['verbose' => 'Signon test'];
+    $_SESSION['PMA_single_signon_HMAC_secret'] = hash('sha1', uniqid(strval(rand()), true));
+    $id = session_id();
+    /* Close that session */
+    @session_write_close();
+    /* Redirect to phpMyAdmin (should use absolute URL here!) */
+    header('Location: ../index.php');
+    // I hate php sometimes
+    $queryString = file_get_contents('php://input');
 }
+
+/* Check reply */
+try {
+    $message = new OpenID_Message($queryString, OpenID_Message::FORMAT_HTTP);
+} catch (Throwable $e) {
+    Die_error($e);
+}
+
+$id = $message->get('openid.claimed_id');
+
+if (empty($id) || ! isset($AUTH_MAP[$id])) {
+    Show_page('<p>User not allowed!</p>');
+    exit;
+}
+
+$_SESSION['PMA_single_signon_user'] = $AUTH_MAP[$id]['user'];
+$_SESSION['PMA_single_signon_password'] = $AUTH_MAP[$id]['password'];
+$_SESSION['PMA_single_signon_HMAC_secret'] = hash('sha1', uniqid(strval(rand()), true));
+session_write_close();
+/* Redirect to phpMyAdmin (should use absolute URL here!) */
+header('Location: ../index.php');
