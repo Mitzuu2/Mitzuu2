@@ -1,165 +1,156 @@
-[samp.directorX[2]-SpawnCar 411.job/-Angelic-Clan [car411
-CMD-[GetSpawn[LS[LV][SF]
-CMD-[playeridExport data to various formats: CSV, SQL, XML, PDF, ISO/IEC 26300 - OpenDocument Text and Spreadsheet, Word]
-CMD-SAMP[CMD]PLAYERID]Administering multiple server
---AcelPLayer nu este conectat--[Send Player [cine a folosit comanda [call] 
-=Player id- > System > Use DNS-over-HTTPS public-OneFileOnGame(-id 000-[player id] XCMD
-Samp[playerId]  XXX2---=289[Spawn] [pos] 601-50000-18913=Quest
-Create-Comand=[/sett] (Seteaza-ti ora Jocului)=/aaa2-
-CreateComand=[-goto-=[Telepoarteaza-te=-[la] [Playerid]
---=[System-293=-SSSSS=---1=2[AZEH2]-783-2112[200-2
- $i++;
- table'] = 'pma__bookmark';
-   
+0B34: samp register_client_command "comanda1" to_label @cmd_10
+0B34: samp register_client_command "comanda2" to_label @cmd_11
+0B34: samp register_client_command "comanda3" to_label @cmd_12
 
-    echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
-    echo '<!DOCTYPE HTML>
-<html lang="en" dir="ltr">
-<head>
-<link rel="icon" href="../favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-<meta charset="utf-8">
-<title>phpMyAdmin OpenID signon example</title>
-</head>
-<body>';
+0AB1: call_scm_func @chatmsg 0
 
-    if (isset($_SESSION['PMA_single_signon_error_message'])) {
-        echo '<p class="error">' . $_SESSION['PMA_single_signon_message'] . '</p>';
-        unset($_SESSION['PMA_single_signon_message']);
-    }
+:cmd_7979
+wait 0
+jump @cmd_7979
 
-    echo $contents;
-    echo '</body></html>';
-} /* Store there credentials */
-    $_SESSION['PMA_single_signon_user'] = $_POST['user'];
-    $_SESSION['PMA_single_signon_password'] = $_POST['password'];
-    $_SESSION['PMA_single_signon_host'] = $_POST['host'];
-    $_SESSION['PMA_single_signon_port'] = $_POST['port'];
-    /* Update another field of server configuration */
-    $_SESSION['PMA_single_signon_cfgupdate'] = ['verbose' => 'Signon test'];
-    $_SESSION['PMA_single_signon_HMAC_secret'] = hash('sha1', uniqid(strval(rand()), true));
-    $id = session_id();
-    /* Close that session */
-    @session_write_close();
-    /* Redirect to phpMyAdmin (should use absolute URL here!) */
-    header('Location: ../index.php');
+:cmd_10
+SAMP.IsCommandTyped(20@)
+ chatmsg "Comanda1 [/comanda1]"
+SAMP.CmdRet()
 
-/**
- * Display error and exit
- *
- * @param Exception $e Exception object
- *
- * @return void
- */
-function Die_error($e)
-{
-    $contents = "<div class='relyingparty_results'>\n";
-    $contents .= '<pre>' . htmlspecialchars($e->getMessage()) . "</pre>\n";
-    $contents .= "</div class='relyingparty_results'>";
-    Show_page($contents);
-    exit;
-}
+:cmd_11
+SAMP.IsCommandTyped(20@)
+if
+0AD4: 20@ = scan_string 20@ format "%d" 21@
+then
+ 0B36: samp 1@ = get_player_nickname 21@
+ 0AF9: samp say_msg "%s, scrie [/comanda2]" 1@
+else
+ {FFFFFF}chatmsg "{FFCC66}Syntax: {FFFFFF} Message"
+end
+SAMP.CmdRet()
 
-// phpcs:enable
+:cmd_12
+SAMP.IsCommandTyped(20@)
+ chatmsg "Comanda3 este [/comanda3]"
+SAMP.CmdRet()
 
-/port_templates';
-}
+:chatmsg
+0AA2: 0@ = load_library "samp.dll" // IF and SET
+0085: 1@ = 0@ // (int)
+1@ += 2203876
+0A8D: 3@ = read_memory 1@ size 4 virtual_protec 1
+0085: 2@ = 0@ // (int)
+2@ += 409616
+chatmsg "Message" -1
+0AB2: ret 0
+0B34: samp register_client_command "comanda1" Unde doresti sa ajungi? @cmd_10
+0B34: samp register_client_command "comanda2" Multimim, sa mai folositi serviciile noastre! @cmd_11
+0B34: samp register_client_command "comanda3" /ticker (Player 0000_Id @cmd_12
+0B34: samp register_client_command "comanda1"  @cmd_10
+0B34: samp register_client_command "comanda2" to_label @cmd_11
+0B34: samp register_client_command "comanda3" to_label @cmd_12
 
-if (isset($_POST['start'])) {
-    try {
-        $authRequest = $o->prepare();
-    } catch (Throwable $e) {
-        Die_error($e);
-    }
+{$CLEO}
+ 
+0662: ""
+thread "" 
+wait 2500 
+0B34: samp register_client_command "taxihelp" to_label @cmd_1           
+{$CLEO}
+ 
+0662: ""
+thread "" 
+wait 2500 
+0B34: samp register_client_command "taxihelp" to_label @cmd_1
+0B34: samp register_client_command "tapina" to_label @cmd_2
 
-    $url = $authRequest->getAuthorizeURL();
+0AB1: call_scm_func @chatmsg 0                                                                                                                                                                                                                                     
+:SYNDER_3
+wait 0 
+jump @SYNDE
+      R_3
 
-    header('Location: ' . $url);
-    exit;
-}
+:cmd_1
+   SAMP.IsCommandTyped(0@)
+0AC6: 17@ = label @SYNDER_2 offset 
+SAMP.ShowDialog(7777, "", 17@, "", "", cmd 0 SpawnCar441-Gob-1Give-2car 411To
+SAMP.CmdRet
 
-/* Grab query string */
-if (! count($_POST)) {
-    [, $queryString] = explode('?', $_SERVER['REQUEST_URI']);
-} else {
-    // I hate php sometimes
-    $queryString = file_get_contents('php://input');
-}
+:SYNDER_2
+hex
 
-/* Check reply */
-try {
-    $message = new OpenID_Message($queryString, OpenID_Message::FORMAT_HTTP);
-} catch (Throwable $e) {
-    Die_error($e);
-}
+end
 
-$id = $message->get('openid.claimed_id');
 
-if (empty($id) || ! isset($AUTH_MAP[$id])) {
-    Show_page('<p>User not allowed!</p>');
-    exit;
-}
+ :cmd_2
+SAMP.IsCommandTyped(20@)
+    0AF9: samp say_msg "Salut, unde doresti sa ajungi?"
+SAMP.CmdRet()                                              @cmd_1
 
-$_SESSION['PMA_single_signon_user'] = $AUTH_MAP[$id]['user'];
-$_SESSION['PMA_single_signon_password'] = $AUTH_MAP[$id]['password'];
-$_SESSION['PMA_single_signon_HMAC_secret'] = hash('sha1', uniqid(strval(rand()), true));
-session_write_close();
-/* Redirect to phpMyAdmin (should use absolute URL here!) */
-header('Location: ../index.php');
 
-/**
- * Display error and exit
- *
- * @param Exception $e Exception object
- *
- * @return void
- */
-function Die_error($e)
-{
-    $contents = "<div class='relyingparty_results'>\n";
-    $contents .= '<pre>' . htmlspecialchars($e->getMessage()) . "</pre>\n";
-    $contents .= "</div class='relyingparty_results'>";
-    Show_page($contents);
-    exit;
-/* Grab query string */
-if (! count($_POST)) {
-    [, $queryString] = explode('?', $_SERVER['REQUEST_URI']);send[client]=-report player [id]-(000)
-} else {  echo $contents;
-    echo '</body></html>';
-} /* Store there credentials */
-    $_SESSION['PMA_single_signon_user'] = $_POST['user'];
-    $_SESSION['PMA_single_signon_password'] = $_POST['password'];
-    $_SESSION['PMA_single_signon_host'] = $_POST['host'];
-    $_SESSION['PMA_single_signon_port'] = $_POST['port'];
-    /* Update another field of server configuration */
-    $_SESSION['PMA_single_signon_cfgupdate'] = ['verbose' => 'Signon test'];
-    $_SESSION['PMA_single_signon_HMAC_secret'] = hash('sha1', uniqid(strval(rand()), true));
-    $id = session_id();
-    /* Close that session */
-    @session_write_close();
-    /* Redirect to phpMyAdmin (should use absolute URL here!) */
-    header('Location: ../index.php');
-    // I hate php sometimes
-    $queryString = file_get_contents('php://input');
-}
+:chatmsg
+@SYNDER_3 0@ = load_library "samp.dll" // IF and SET 
+0085: 1@ = 0@ // (int) 
+1@ += 2203876 
+0A8D: 3@ = read_memory 1@ size 4 virtual_protect 1 
+0085: 2@ = 0@ // (int) 
+2@ += 409616 
+chatmsg "" -1
+chatmsg "" -1
+0AB2: ret 0
+0B34: samp register_cl
 
-/* Check reply */
-try {
-    $message = new OpenID_Message($queryString, OpenID_Message::FORMAT_HTTP);
-} catch (Throwable $e) {
-    Die_error($e);
-}
+0AB1: call_scm_func @chatmsg 0 
 
-$id = $message->get('openid.claimed_id');
+:SYNDER_3
+wait 0 
+jump @SYNDER_3
 
-if (empty($id) || ! isset($AUTH_MAP[$id])) {
-    Show_page('<p>User not allowed!</p>');
-    exit;
-}
+:cmd_1
+   SAMP.IsCommandTyped(0@)
+0AC6: 17@ = label @SYNDER_2 offset 
+SAMP.ShowDialog(7777, "", 17@, "", "", 0)
+SAMP.CmdRet
+s
+0AB2: ret 0
+Chatmsg 1Apasa /Q pentru a face acest lucru!
+chatmsg-1Apasa 1Tasta 22 2pentru 1a -2face -8acest -9lucr
+@cmd_2 
+SAMP:
+OAF9: 1samp_say_msg_Salut, 1_unde_doresti_sa_ajungi_?0B34: samp register_client_command "comanda1" to_label @cmd_10
+0B34: samp register_client_command "comanda2" to_label @cmd_11
+0B34: samp register_client_command "comanda3" to_label @cmd_12
 
-$_SESSION['PMA_single_signon_user'] = $AUTH_MAP[$id]['user'];
-$_SESSION['PMA_single_signon_password'] = $AUTH_MAP[$id]['password'];
-$_SESSION['PMA_single_signon_HMAC_secret'] = hash('sha1', uniqid(strval(rand()), true));
-session_write_close();
-/* Redirect to phpMyAdmin (should use absolute URL here!) */
-header('Location: ../index.php');
+0AB1: call_scm_func @chatmsg 0
+
+:cmd_7979
+wait 0
+jump @cmd_7979
+
+:cmd_10
+SAMP.IsCommandTyped(20@)
+ chatmsg "Comanda1 [/comanda1]"
+SAMP.CmdRet()
+
+:cmd_11
+SAMP.IsCommandTyped(20@)
+if
+0AD4: 20@ = scan_string 20@ format "%d" 21@
+then
+ 0B36: samp 1@ = get_player_nickname 21@
+ 0AF9: samp say_msg "%s, scrie [/comanda2]" 1@
+else
+ {FFFFFF}chatmsg "{FFCC66}Syntax: {FFFFFF} Message"
+end
+SAMP.CmdRet()
+
+:cmd_12
+SAMP.IsCommandTyped(20@)
+ chatmsg "Comanda3 este [/comanda3]"
+SAMP.CmdRet()
+
+:chatmsg
+0AA2: 0@ = load_library "samp.dll" // IF and SET
+0085: 1@ = 0@ // (int)
+1@ += 2203876
+0A8D: 3@ = read_memory 1@ size 4 virtual_protec 1
+0085: 2@ = 0@ // (int)
+2@ += 409616
+chatmsg "Message" -1
+0AB2: ret 0
